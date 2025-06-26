@@ -1,3 +1,4 @@
+// Importações de Módulos Locais
 import { Engine } from './src/Engine.js';
 import { World } from './src/World.js';
 import { Player } from './src/Player.js';
@@ -5,6 +6,9 @@ import { Controls } from './src/Controls.js';
 import { UI } from './src/UI.js';
 import { DataManager } from './src/DataManager.js';
 import { BLOCKS } from './src/Blocks.js';
+
+// IMPORTAÇÃO CORRIGIDA: Importando SimplexNoise como um módulo de um CDN
+import SimplexNoise from 'https://cdn.skypack.dev/simplex-noise';
 
 // Inicialização do Simplex Noise
 const simplex = new SimplexNoise();
@@ -15,7 +19,7 @@ const loadingScreen = document.getElementById('loading-screen');
 
 // Componentes principais do Jogo
 const engine = new Engine(canvas);
-const world = new World(simplex);
+const world = new World(simplex); // Agora 'simplex' está corretamente definido
 const player = new Player(engine.scene);
 const controls = new Controls(player, canvas, world);
 const ui = new UI();

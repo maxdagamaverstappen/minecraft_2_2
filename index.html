@@ -11,10 +11,9 @@
 
     <!-- UI Overlay -->
     <div id="ui-container">
+        <!-- ... (o resto da UI continua igual) ... -->
         <div class="crosshair">+</div>
-        <div id="hotbar">
-            <!-- Slots da hotbar serão gerados via JS -->
-        </div>
+        <div id="hotbar"></div>
         <div id="debug-info">
             FPS: <span id="fps">--</span><br>
             Pos: <span id="player-pos">--,--,--</span><br>
@@ -29,9 +28,11 @@
         <h1>Carregando mundo...</h1>
     </div>
 
-    <!-- Importando Three.js e o Simplex Noise -->
+    <!-- Importando Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simplex-noise@3.0.0/dist/simplex-noise.min.js"></script>
+    
+    <!-- REMOVIDO: A linha do simplex-noise foi removida daqui -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simplex-noise@3.0.0/dist/simplex-noise.min.js"></script> -->
 
     <!-- Scripts do Jogo (importados como módulos) -->
     <script type="module" src="main.js"></script>
