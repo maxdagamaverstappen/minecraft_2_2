@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Minecraftia', monospace; /* Use uma fonte pixelada se desejar */
+    color: white;
+    text-shadow: 2px 2px 0 #000;
+}
+
+#game-canvas {
+    display: block;
+}
+
+#ui-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite cliques do mouse através da UI */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+}
+
+#hotbar {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid #555;
+}
+
+.hotbar-slot {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #888;
+    margin: 5px;
+    background-size: cover;
+    background-position: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 2px;
+}
+
+.hotbar-slot.selected {
+    border-color: white;
+    transform: scale(1.1);
+}
+
+#debug-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+#block-info {
+    position: absolute;
+    bottom: 90px;
+    font-size: 16px;
+}
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
