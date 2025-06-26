@@ -1,4 +1,3 @@
-// Importações de Módulos Locais
 import { Engine } from './src/Engine.js';
 import { World } from './src/World.js';
 import { Player } from './src/Player.js';
@@ -7,60 +6,47 @@ import { UI } from './src/UI.js';
 import { DataManager } from './src/DataManager.js';
 import { BLOCKS } from './src/Blocks.js';
 
-// IMPORTAÇÃO CORRIGIDA: Importando SimplexNoise como um módulo de um CDN
-import SimplexNoise from 'https://cdn.skypack.dev/simplex-noise';
+// ❌ REMOVA a linha de importação do SimplexNoise
+// import SimplexNoise from 'https://cdn.skypack.dev/simplex-noise';
 
-// Inicialização do Simplex Noise
-const simplex = new SimplexNoise();
+// ✅ CORRIJA a inicialização para usar o objeto 'window'
+const simplex = new window.SimplexNoise();
 
 // Elementos do DOM
 const canvas = document.getElementById('game-canvas');
 const loadingScreen = document.getElementById('loading-screen');
 
-// Componentes principais do Jogo
+// Componentes principais do Jogo (o resto do arquivo permanece igual)
 const engine = new Engine(canvas);
-const world = new World(simplex); // Agora 'simplex' está corretamente definido
+const world = new World(simplex);
 const player = new Player(engine.scene);
 const controls = new Controls(player, canvas, world);
 const ui = new UI();
 const dataManager = new DataManager('my-minecraft-clone');
 
-// Variáveis de controle do jogo
+// ... o resto do código do main.js continua exatamente como antes ...
+
 let lastTime = performance.now();
 let frameCount = 0;
 let fps = 0;
 
 async function setup() {
-    // Carregar texturas e dados
     await world.loadTextures();
-    
-    // Conectar o mundo ao motor de renderização
     world.scene = engine.scene;
-    
-    // Tentar carregar dados salvos
     const savedData = dataManager.load();
     if (savedData) {
         player.loadData(savedData.player);
         world.loadData(savedData.world);
     }
-
-    // Gerar o mundo inicial em torno do jogador
     world.generateInitialChunks(player.position);
-    
-    // Esconder a tela de carregamento
     loadingScreen.style.display = 'none';
-
-    // Iniciar o loop do jogo
     animate();
 }
 
 function animate() {
     requestAnimationFrame(animate);
-
     const currentTime = performance.now();
-    const deltaTime = (currentTime - lastTime) / 1000; // DeltaTime em segundos
-
-    // Atualizar FPS a cada segundo
+    const deltaTime = (currentTime - lastTime) / 1000;
     frameCount++;
     if (currentTime > lastTime + 1000) {
         fps = frameCount;
@@ -68,17 +54,13 @@ function animate() {
         lastTime = currentTime;
         ui.updateDebugInfo({ fps, pos: player.position, chunkCount: world.chunks.size });
     }
-    
-    // Atualizar componentes do jogo
     controls.update(deltaTime);
     player.update(deltaTime, world);
     world.update(player.position);
     engine.update(deltaTime, player.camera);
-
     engine.render();
 }
 
-// Lidar com salvamento ao fechar a aba
 window.addEventListener('beforeunload', () => {
     const dataToSave = {
         player: player.getSaveData(),
@@ -87,5 +69,4 @@ window.addEventListener('beforeunload', () => {
     dataManager.save(dataToSave);
 });
 
-// Iniciar o jogo
 setup();

@@ -9,9 +9,8 @@
 <body>
     <canvas id="game-canvas"></canvas>
 
-    <!-- UI Overlay -->
+    <!-- UI (sem alterações) -->
     <div id="ui-container">
-        <!-- ... (o resto da UI continua igual) ... -->
         <div class="crosshair">+</div>
         <div id="hotbar"></div>
         <div id="debug-info">
@@ -23,18 +22,15 @@
             Bloco selecionado: <span id="selected-block"></span>
         </div>
     </div>
-    
-    <div id="loading-screen">
-        <h1>Carregando mundo...</h1>
-    </div>
+    <div id="loading-screen"><h1>Carregando mundo...</h1></div>
 
-    <!-- Importando Three.js -->
+    <!-- Importando bibliotecas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- REMOVIDO: A linha do simplex-noise foi removida daqui -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/simplex-noise@3.0.0/dist/simplex-noise.min.js"></script> -->
+    <!-- ✅ COLOQUE ESTA LINHA DE VOLTA -->
+    <script src="https://cdn.jsdelivr.net/npm/simplex-noise@3.0.0/dist/simplex-noise.min.js"></script>
 
-    <!-- Scripts do Jogo (importados como módulos) -->
+    <!-- Scripts do Jogo -->
     <script type="module" src="main.js"></script>
 </body>
 </html>
